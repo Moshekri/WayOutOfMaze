@@ -30,8 +30,11 @@ namespace FindPathInMaze
         {
 
             maze = helper.CreatRandomMaze(int.Parse(txtMazeSize.Text));
+            
+
             txtDestination.Text = $"{int.Parse(txtMazeSize.Text) - 1},{int.Parse(txtMazeSize.Text) - 1}";
             size = maze.Split('\n')[0].Length;
+            txtDestination.Text = $"{size - 1},{size - 1}";
             PrintGraph(maze);
 
         }
@@ -41,6 +44,7 @@ namespace FindPathInMaze
             Graphics g = Graphics.FromHwnd(txtBoxMaze.Handle);
             int cellWidth = txtBoxMaze.Size.Width / int.Parse(txtMazeSize.Text);
             int cellHieght = txtBoxMaze.Size.Height / int.Parse(txtMazeSize.Text);
+            //cellWidth = cellHieght =10;
             g.Clear(Color.White);
             Bitmap map = new Bitmap(txtBoxMaze.Size.Width, txtBoxMaze.Size.Height);
             Graphics test = Graphics.FromImage(map);
@@ -57,20 +61,18 @@ namespace FindPathInMaze
                     Rectangle rec = new Rectangle(new Point(i * cellWidth, j * cellHieght), new Size(cellWidth, cellHieght));
                     if (lines[i][j] == 'w')
                     {
-
-                        test.FillRectangle(new SolidBrush(Color.Black), rec);
+                        g.FillRectangle(new SolidBrush(Color.Black), rec);
                     }
                     else if (lines[i][j] == '.')
                     {
-                        test.FillRectangle(new SolidBrush(Color.Wheat), rec);
+                        g.FillRectangle(new SolidBrush(Color.Wheat), rec);
                     }
                 }
 
             }
-            g.DrawImage(map, new Point(0, 0));
+           // g.DrawImage(map, new Point(0, 0));
             //txtBoxMaze.Text = sb.ToString();
         }
-
 
         private void button2_Click(object sender, EventArgs e)
         {

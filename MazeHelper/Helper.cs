@@ -77,9 +77,12 @@ namespace MazeHelper
                     {
                         graph.vertices[x, y] = new Vertex() { Position = new Point(x, y) };
                     }
-                    Edge e = new Edge() { Destination = graph.vertices[x, y], Source = graph.vertices[x1, y1] };
-                    
-                    graph.vertices[x1, y1].OutgoingEdges.Add(e);
+                    Edge edge = new Edge() { Destination = graph.vertices[x, y], Source = graph.vertices[x1, y1] };
+                if (edge.Source.OutgoingEdges.SingleOrDefault(e => e.Destination == edge.Destination) == null)
+                {
+                    graph.vertices[x1, y1].OutgoingEdges.Add(edge);
+                }
+               
                 
             }
 
@@ -98,7 +101,7 @@ namespace MazeHelper
                         continue;
                     }
                     int num =  random.Next(0, 1000);
-                    if (num > 800)
+                    if (num > 600)
                     {
                         sb.Append('w');
                     }

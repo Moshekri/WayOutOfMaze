@@ -19,24 +19,43 @@ namespace Bleman_Ford
         }
         public void ProcessGraph(Vertex source)
         {
-            _source = source;
-            for (int x = 0; x < this.size; x++)
+            int count = 0;
+            foreach (var item in vertices)
             {
-                for (int y = 0; y < this.size; y++)
+                if (item!=null)
                 {
-                    if (vertices[x, y] != null)
+                    count++;
+                }
+            }
+            bool isChanged = false;
+            _source = source;
+            for (int i = 0; i < count; i++)
+            {
+                isChanged = false;
+                for (int x = 0; x < this.size; x++)
+                {
+                    for (int y = 0; y < this.size; y++)
                     {
-                        foreach (Edge edge in vertices[x, y].OutgoingEdges)
+                        if (vertices[x, y] != null)
                         {
-                            if (edge.Destination.Cost > edge.Weight + edge.Source.Cost)
+                            foreach (Edge edge in vertices[x, y].OutgoingEdges)
                             {
-                                edge.Destination.Cost = edge.Weight + edge.Source.Cost;
-                                edge.Destination.Ancestor = edge.Source;
+                                if (edge.Destination.Cost > edge.Weight + edge.Source.Cost)
+                                {
+                                    edge.Destination.Cost = edge.Weight + edge.Source.Cost;
+                                    edge.Destination.Ancestor = edge.Source;
+                                    isChanged = true;
+                                }
                             }
                         }
                     }
                 }
+                if (!isChanged)
+                {
+                    return;
+                }
             }
+            
         }
         public long GetCostToDestination(Vertex source, Vertex Destination)
         {
