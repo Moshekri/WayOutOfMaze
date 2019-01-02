@@ -28,15 +28,11 @@ namespace FindPathInMaze
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             maze = helper.CreatRandomMaze(int.Parse(txtMazeSize.Text));
-            
-
             txtDestination.Text = $"{int.Parse(txtMazeSize.Text) - 1},{int.Parse(txtMazeSize.Text) - 1}";
             size = maze.Split('\n')[0].Length;
             txtDestination.Text = $"{size - 1},{size - 1}";
             PrintGraph(maze);
-
         }
 
         private void PrintGraph(string maze)
@@ -70,7 +66,7 @@ namespace FindPathInMaze
                 }
 
             }
-           // g.DrawImage(map, new Point(0, 0));
+            // g.DrawImage(map, new Point(0, 0));
             //txtBoxMaze.Text = sb.ToString();
         }
 
@@ -100,7 +96,7 @@ namespace FindPathInMaze
         {
             Bitmap tempImage = new Bitmap(txtBoxSolved.Size.Width, txtBoxSolved.Size.Height);
             Graphics temp = Graphics.FromImage(tempImage);
-            
+
             Graphics g = Graphics.FromHwnd(txtBoxSolved.Handle);
             int cellWidth = txtBoxSolved.Size.Width / int.Parse(txtMazeSize.Text);
             int cellHieght = txtBoxSolved.Size.Height / int.Parse(txtMazeSize.Text);
@@ -140,7 +136,7 @@ namespace FindPathInMaze
             }
             //sw.Stop();
             //long elapsed = sw.ElapsedMilliseconds;
-            g.DrawImage(tempImage,new PointF(0,0));
+            g.DrawImage(tempImage, new PointF(0, 0));
             // txtBoxSolved.Text = sb.ToString();
         }
     }

@@ -14,7 +14,7 @@ namespace MazeHelper
         Random random = new Random();
         Graph graph = null;
         string[] lines;
-
+       
 
         public Graph CreateGraph(string maze)
         {
@@ -101,7 +101,7 @@ namespace MazeHelper
                         continue;
                     }
                     int num =  random.Next(0, 1000);
-                    if (num > 600)
+                    if (num >900)
                     {
                         sb.Append('w');
                     }
